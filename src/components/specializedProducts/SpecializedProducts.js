@@ -52,7 +52,8 @@ function SpecializedProducts() {
                         text: 'Error al eliminar producto!',
                     })
                 })
-
+                    setProducts(products.filter((item)=> item.upc !== productId))
+                console.log(products)
             }
         })
     }
