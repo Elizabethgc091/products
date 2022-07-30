@@ -1,43 +1,65 @@
 import React, {useEffect, useState} from "react";
+import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 
 function CreateProduct() {
     const [newProduct, setNewProduct] = useState({});
+    const navigate = useNavigate();
 
     function handleInputChange(e) {
-     const {name, value} = e.target;
-        setNewProduct({...newProduct, [name]:value})
+        const {name, value} = e.target;
+        setNewProduct({...newProduct, [name]: value})
     }
 
-    function handlerSubmit(e){
+    function handlerSubmit(e) {
         e.preventDefault();
         const requestOptions = {
             method: 'POST',
             mode: 'cors',
-            headers: { 'Content-Type': 'application/json' },
-            body:JSON.stringify(newProduct)
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(newProduct)
         };
         fetch("http://localhost:3001/products", requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
-
+                if (data.message === 'Body params error'){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Campos Vacíos!',
+                    })
+                }else {
+                    Swal.fire({
+                        title: 'Se agrego el producto',
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: '#0096CE',
+                        confirmButtonText: 'OK!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            navigate("/")
+                        }
+                    })
+                }
             })
-        console.log(newProduct)
         e.target.reset();
     }
-    return(
+
+    return (
         <div>
             <p>Cargar producto</p>
             <form className="container" onSubmit={handlerSubmit}>
                 <div className="mb-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">Nombre de producto</label>
                     <input type="text" className="form-control" id="formGroupExampleInput"
-                           placeholder="Escribe el nombre del producto" name="product_name" onChange={handleInputChange}/>
+                           placeholder="Escribe el nombre del producto" name="product_name"
+                           onChange={handleInputChange}/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="formGroupExampleInput2" className="form-label">SKU simple</label>
                     <input type="text" className="form-control" id="formGroupExampleInput2"
-                           placeholder="Escribe el sku simple del producto" name="simple_sku" onChange={handleInputChange}/>
+                           placeholder="Escribe el sku simple del producto" name="simple_sku"
+                           onChange={handleInputChange}/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">Sku</label>
@@ -55,7 +77,8 @@ function CreateProduct() {
                            placeholder="Asigna un precio al producto" name="price" onChange={handleInputChange}/>
                 </div>
                 <label htmlFor="formGroupExampleInput" className="form-label">Estado</label>
-                <select className="form-select" aria-label="Default select example" name="enable" onChange={handleInputChange}>
+                <select className="form-select" aria-label="Default select example" name="enable"
+                        onChange={handleInputChange}>
                     <option value>Selecciona un estado para el producto</option>
                     <option value="true">Publicado</option>
                     <option value="false">Pendiente</option>
@@ -69,7 +92,7 @@ function CreateProduct() {
                         <button type="button" className="btn btn-outline-primary">Guardar y Salir</button>
                     </div>
                     <div className="p-2">
-                        <button type="submit" className="btn btn-outline-primary" >+ Cargar producto</button>
+                        <button type="submit" className="btn btn-outline-primary">+ Cargar producto</button>
                     </div>
                 </div>
             </form>

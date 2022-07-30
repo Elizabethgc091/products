@@ -7,17 +7,6 @@ function SpecializedProducts() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const requestOptions = {
-            method: 'GET',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin' : '*',
-                'Access-Control-Allow-Credentials' : true
-            },
-        };
-        //https://mocki.io/v1/312d2fee-b4d7-441e-be08-5c67b0404e76
-
         fetch("http://localhost:3001/products")
             .then(response => response.json())
             .then(data => {
