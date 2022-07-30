@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 function SpecializedProducts() {
@@ -16,6 +17,44 @@ function SpecializedProducts() {
 
     function createProduct(){
         navigate("/create");
+    }
+
+    function deleteItem(productId) {
+        Swal.fire({
+            title: '¿Deseas eliminar el producto?',
+            text: "Eliminar un producto es una acción permanente y no podrás recuperar el producto eliminado.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            let URL = `http://localhost:3001/products/${productId}`;
+            if (result.isConfirmed) {
+                fetch(URL, {method: 'DELETE'})
+                    .then(response => {
+                        if (response.status !== 200){
+                            throw new Error(`Error! status: ${response.status}`);
+                        }
+                        return response.json()
+                    })
+                    .then(data =>{
+                        Swal.fire(
+                            'Éxito!',
+                            'El producto ha sido eliminado correctamente.',
+                            'success'
+                        )
+                    })
+                    .catch(err =>{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Error al eliminar producto!',
+                    })
+                })
+
+            }
+        })
     }
     return(
         <div>
@@ -69,7 +108,7 @@ function SpecializedProducts() {
                                     <ul className="dropdown-menu">
                                         <li><a className="dropdown-item" href="#"><i className="bi bi-eye"></i> Ver Detalle</a></li>
                                         <li><hr className="dropdown-divider"/></li>
-                                        <li><a className="dropdown-item text-danger" href="#"><i className="bi bi-x-lg"></i> Eliminar Producto</a></li>
+                                        <li><a className="dropdown-item text-danger" href="#" onClick={()=>deleteItem(product.upc)}><i className="bi bi-x-lg"></i> Eliminar Producto</a></li>
                                     </ul>
                                 </div>
                             </td>
