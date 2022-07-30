@@ -1,36 +1,28 @@
 import React, {useEffect, useState} from "react";
 
 function CreateProduct() {
-    const variblesTemporal = {
-        simple_sku: "",
-        sku: "",
-        upc: "",
-        product_name: "",
-        price: "",
-        enable: ""
-    }
-    const [values, setValues] = useState(variblesTemporal);
-    useEffect(() => {
-        const requestOptions = {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body:JSON.stringify(variblesTemporal)
-        };
-        fetch("http://localhost:3001/products", requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                //console.log(data.message)
-            })
-    }, []);
+    const [newProduct, setNewProduct] = useState({});
+
     function handleInputChange(e) {
      const {name, value} = e.target;
-     setValues({...values, [name]:value})
+        setNewProduct({...newProduct, [name]:value})
     }
 
     function handlerSubmit(e){
         e.preventDefault();
-        console.log(values)
+        const requestOptions = {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json' },
+            body:JSON.stringify(newProduct)
+        };
+        fetch("http://localhost:3001/products", requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+
+            })
+        console.log(newProduct)
         e.target.reset();
     }
     return(
@@ -64,7 +56,7 @@ function CreateProduct() {
                 </div>
                 <label htmlFor="formGroupExampleInput" className="form-label">Estado</label>
                 <select className="form-select" aria-label="Default select example" name="enable" onChange={handleInputChange}>
-                    <option selected>Selecciona un estado para el producto</option>
+                    <option value>Selecciona un estado para el producto</option>
                     <option value="true">Publicado</option>
                     <option value="false">Pendiente</option>
                     <option value="false">Retrasado</option>
