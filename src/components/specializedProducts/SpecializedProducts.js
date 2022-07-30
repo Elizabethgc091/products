@@ -24,6 +24,9 @@ function SpecializedProducts() {
                     <div className="p-2 flex-grow-1">
                         <p className="fs-2">Productos especializados</p>
                     </div>
+                    <div className="d-flex flex-wrap">
+                        <span>No. items</span>
+                    </div>
                     <div className="p-2">
                         <button type="button" className="btn btn-primary btn-lg">Acciones masivas</button>
                     </div>
@@ -52,7 +55,24 @@ function SpecializedProducts() {
                             <td>{product.upc}</td>
                             <td>{product.price}</td>
                             <td>{product.created_at}</td>
-                            <td>{product.enable}</td>
+                            <td>
+                            {product.enable === "true" ? <span className="badge text-bg-success">Publicado</span>: <span
+                                className="badge text-bg-warning">Publicado</span>}
+                            </td>
+
+                            <td>
+                                <div className="btn-group dropstart">
+                                    <button type="button" className="btn btn-secondary dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i className="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="#"><i className="bi bi-eye"></i> Ver Detalle</a></li>
+                                        <li><hr className="dropdown-divider"/></li>
+                                        <li><a className="dropdown-item text-danger" href="#"><i className="bi bi-x-lg"></i> Eliminar Producto</a></li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>)
                     })}
                     </tbody>
