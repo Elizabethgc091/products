@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Swal from 'sweetalert2'
+import styleCreateProduct from '../createProduct/styleCreateProduct.css'
 import { useNavigate } from "react-router-dom";
 
 function CreateProduct() {
@@ -47,8 +48,14 @@ function CreateProduct() {
 
     return (
         <div>
-            <p>Cargar producto</p>
+            <div className="p-2 flex-grow-1">
+                <p className="fs-2">
+                    <i className="color-purple bi bi-chevron-left"></i>
+                   Cargar producto</p>
+            </div>
+
             <form className="container" onSubmit={handlerSubmit}>
+                <p className='date-products'>Datos del producto</p>
                 <div className="mb-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">Nombre de producto</label>
                     <input type="text" className="form-control" id="formGroupExampleInput"
