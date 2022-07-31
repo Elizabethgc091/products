@@ -2,18 +2,61 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import SpecializedProducts from '../src/components/specializedProducts/SpecializedProducts'
 import CreateProduct from '../src/components/createProduct/CreateProduct'
-function App() {
 
-  return (
-      <BrowserRouter>
-          <div className="App">
-              <Routes>
-                  <Route path="/" element={<SpecializedProducts />}></Route>
-                  <Route path="/create" element={<CreateProduct/>}></Route>
-              </Routes>
-          </div>
-      </BrowserRouter>
-  );
+import icon from './images/icon.png'
+import home from './images/home.svg'
+import box from './images/box.svg'
+import bell from './images/bell.svg'
+import gear from './images/gear.svg'
+
+function App() {
+    return (
+        <div className="App">
+            <div className='home-container'>
+                <nav className='nav-bar'>
+                    <div className='nav-bar-icons'>
+                        <img id='icon-products' src={icon} alt="icon-product"/>
+                        <img id='icon-home' src={home} alt="home"/>
+                        <img id='icon-box' src={box} alt="box"/>
+                        <img id='icon-bell' src={bell} alt="notificaciones"/>
+                        <img id='icon-gear' src={gear} alt="ajustes"/>
+                    </div>
+                </nav>
+                <div className='header-nav'>
+                    <header className='header-container container-fluid'>
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb">
+                                <li className="breadcrumb-item"><a href="#">
+                                    <img id='icon-home' src={home} alt="home"/>
+                                </a></li>
+                                <li className="breadcrumb-item"><a href="#">Productos</a></li>
+                                <li className="breadcrumb-item active" aria-current="page">Productos especializados</li>
+                            </ol>
+                        </nav>
+                        <div className='profile-info'>
+                            <div>
+                                <p>Southorn Administrator</p>
+                                <p>Elizabeth</p>
+                            </div>
+
+                            <div id='user-picture'>
+                                EG
+                            </div>
+                        </div>
+                    </header>
+                    <main className='container-fluid'>
+                        <BrowserRouter>
+                            <Routes>
+                                <Route path="/" element={<SpecializedProducts/>}></Route>
+                                <Route path="/create" element={<CreateProduct/>}></Route>
+                            </Routes>
+                        </BrowserRouter>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+    );
 }
 
 export default App;

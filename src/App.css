@@ -1,0 +1,60 @@
+.App{
+    font-family: 'Montserrat', sans-serif;
+}
+.home-container {
+    display: flex;
+
+}
+.header-nav {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: burlywood;
+    height: 8rem;
+    width: 100%;
+}
+.profile-info{
+    display: flex;
+    justify-content: center;
+    gap: 17px;
+}
+
+.nav-bar {
+    height: 100vh;
+    width: 8rem;
+    padding: 24px 19px 24px 19px;
+}
+
+#user-picture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background-color: black;
+}
+.nav-bar-icons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    gap:48px;
+}
+#icon-products{
+    height: 30px;
+    width: 36px;
+}
+#icon-home, #icon-box, #icon-bell, #icon-gear{
+    height: 22px;
+    width: 22px;
+}
