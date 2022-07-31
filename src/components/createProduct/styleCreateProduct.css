@@ -12,5 +12,20 @@ font-size: 28px;
     line-height: 21px;
     letter-spacing: 0px;
     text-align: left;
+}
+#formGroupExampleInput::placeholder, #formGroupExampleInput2::placeholder{
+    color: #5B00A280;
+}
 
+.mb-3{
+    margin-top: 20px;
+}
+.btn-outline-primary{
+    border: 2px solid #5B00A2 !important;
+    color: #4C117B !important;
+    font-size: 18px !important;
+}
+.btn-outline-primary:hover{
+    background-color: #5B00A2 !important;
+    color: white !important;
 }

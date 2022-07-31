@@ -57,33 +57,33 @@ function CreateProduct() {
             <form className="container" onSubmit={handlerSubmit}>
                 <p className='date-products'>Datos del producto</p>
                 <div className="mb-3">
-                    <label htmlFor="formGroupExampleInput" className="form-label">Nombre de producto</label>
+                    <label htmlFor="formGroupExampleInput" className="form-label fw-bold">Nombre de producto</label>
                     <input type="text" className="form-control" id="formGroupExampleInput"
                            placeholder="Escribe el nombre del producto" name="product_name"
                            onChange={handleInputChange}/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="formGroupExampleInput2" className="form-label">SKU simple</label>
+                    <label htmlFor="formGroupExampleInput2" className="form-label fw-bold">SKU simple</label>
                     <input type="text" className="form-control" id="formGroupExampleInput2"
                            placeholder="Escribe el sku simple del producto" name="simple_sku"
                            onChange={handleInputChange}/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="formGroupExampleInput" className="form-label">Sku</label>
+                    <label htmlFor="formGroupExampleInput" className="form-label fw-bold">Sku</label>
                     <input type="text" className="form-control" id="formGroupExampleInput"
                            placeholder="Escribe el sku del producto" name="sku" onChange={handleInputChange}/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="formGroupExampleInput2" className="form-label">UPC</label>
+                    <label htmlFor="formGroupExampleInput2" className="form-label fw-bold">UPC</label>
                     <input type="text" className="form-control" id="formGroupExampleInput2"
                            placeholder="Escribe el código UPC del producto" name="upc" onChange={handleInputChange}/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="formGroupExampleInput" className="form-label">Precio del producto</label>
+                    <label htmlFor="formGroupExampleInput" className="form-label fw-bold">Precio del producto</label>
                     <input type="text" className="form-control" id="formGroupExampleInput"
                            placeholder="Asigna un precio al producto" name="price" onChange={handleInputChange}/>
                 </div>
-                <label htmlFor="formGroupExampleInput" className="form-label">Estado</label>
+                <label htmlFor="formGroupExampleInput" className="form-label fw-bold" >Estado</label>
                 <select className="form-select" aria-label="Default select example" name="enable"
                         onChange={handleInputChange}>
                     <option value>Selecciona un estado para el producto</option>
