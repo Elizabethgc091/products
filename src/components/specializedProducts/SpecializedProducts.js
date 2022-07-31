@@ -123,13 +123,15 @@ function SpecializedProducts() {
                 </thead>
                 <tbody>
                 {products.map((product, key) => {
+                    let date = product.created_at;
+                    date =  new Date().toLocaleDateString('es-MX')
                     return (<tr key={key}>
                         <td>{product.product_name}</td>
-                        <td>{product.simple_sku}</td>
-                        <td>{product.sku}</td>
+                        <td>{product.simple_sku.toUpperCase()}</td>
+                        <td>{product.sku.toUpperCase()}</td>
                         <td>{product.upc}</td>
                         <td>{product.price}</td>
-                        <td>{product.created_at}</td>
+                        <td>{date}</td>
                         <td>
                             {product.enable === "true" ? <span className="badge text-bg-success">Publicado</span> :
                                 <span
