@@ -39,3 +39,9 @@
     top: 2px;
     border-radius: 16px;
 }
+.dropdown-toggle{
+    border: none !important;
+    color: #4C117B !important;
+    background-color: white !important;
+    font-size: 20px !important;
+}

@@ -119,6 +119,7 @@ function SpecializedProducts() {
                     <th scope='col'>PRECIO <img src={chevron} alt="expand"/></th>
                     <th scope='col'>FECHA DE CARGA <img src={chevron} alt="expand"/></th>
                     <th scope='col'>ESTADO <img src={chevron} alt="expand"/></th>
+                    <th scope='col'></th>
                 </tr>
                 </thead>
                 <tbody>
