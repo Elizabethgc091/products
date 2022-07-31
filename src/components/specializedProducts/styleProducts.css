@@ -1,0 +1,41 @@
+.container-products{
+    margin-top: 20px;
+}
+.select-form, .btn-cargar{
+    border: 2px solid #5B00A2;
+    border-radius: 8px;
+    color: #5B00A2;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 17px;
+    text-align: center;
+    height: 45px;
+}
+.select-form:hover{
+    background-color: #5B00A2;
+    color: #ffffff;
+}
+.btn-cargar{
+    background-color: white;
+}
+ .btn-cargar:hover{
+    background-color: #5B00A2;
+     color: #ffffff;
+}
+ .select-gst{
+     background: rgba(91, 0, 162, 0.12);
+     border: 2px solid #5B00A2;
+     border-radius: 5px;
+     padding: 14px;
+    color:#4C117B;
+     font-size: 16px;
+     font-weight: 600;
+ }
+.container-btns{
+    height: 32px;
+    width: 192px;
+    left: 0px;
+    top: 2px;
+    border-radius: 16px;
+}

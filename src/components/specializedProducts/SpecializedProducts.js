@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import chevron from '../../images/chevron.svg'
+import funnel from '../../images/funnel.svg'
+import styleProducts from './styleProducts.css'
 
 
 function SpecializedProducts() {
@@ -60,26 +62,28 @@ function SpecializedProducts() {
     }
 
     return (
-        <div>
-
+        <div className='container-fluid container-products'>
             <div className="d-flex">
                 <div className="p-2 flex-grow-1">
                     <p className="fs-2">
                         <i className="color-purple bi bi-chevron-left"></i>
                         Productos especializados</p>
                 </div>
-
                 <div className="p-2">
-                    <button type="button" className="btn btn-primary btn-lg">Acciones masivas</button>
+                    <select className="select-form" aria-label="Default select example">
+                        <option selected>
+                          Cargas masivas
+                        </option>
+                    </select>
                 </div>
                 <div className="p-2">
-                    <button type="button" className="btn btn-secondary btn-lg" onClick={createProduct}> + Cargar
+                    <button type="button" className="btn-cargar" onClick={createProduct}> + Cargar
                         producto
                     </button>
                 </div>
             </div>
             <div className="d-flex align-items-center">
-                <div className="p-2 ">No. items: </div>
+                <div className="p-2 ">No. items:</div>
                 <div className="p-2">
                     <select className="form-select" aria-label="Default select example" disabled>
                         <option selected>10</option>
@@ -87,18 +91,20 @@ function SpecializedProducts() {
                 </div>
                 <div className="p-2 flex-grow-1">
                     <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder=" Busca por SKU" aria-label="Search"/>
+                        <input className="form-control me-2" type="search" placeholder=" Busca por SKU"
+                               aria-label="Search"/>
                     </form>
                 </div>
                 <div className="p-2">
-                    <button className="btn btn-outline-success" type="submit">
-                        <i className="bi bi-layout-text-sidebar-reverse"></i>
-                        Gestionar columnas</button>
+                    <select className="select-gst" aria-label="Default select example">
+                        <option selected>
+                           Gestionar columnas
+                        </option>
+                    </select>
                 </div>
 
-
                 <div className="p-2">
-                    <i className="bi bi-funnel"></i>
+                    <img src={funnel} alt="filtrar"/>
                 </div>
             </div>
             <table className='table'>
@@ -151,6 +157,31 @@ function SpecializedProducts() {
                 })}
                 </tbody>
             </table>
+            <div className="d-flex mb-2">
+                <div className="me-auto p-2">
+                    <p className='text-secondary'>Mostrando 1 de 10 de 100 resultados</p>
+                </div>
+                <div className="p-2">
+                    <nav aria-label="Page navigation example">
+                        <ul className="pagination">
+                            <li className="page-item">
+                                <a className="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li className="page-item"><a className="page-link" href="#">1</a></li>
+                            <li className="page-item"><a className="page-link" href="#">2</a></li>
+                            <li className="page-item"><a className="page-link" href="#">3</a></li>
+                            <li className="page-item">
+                                <a className="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
         </div>
     )
 }
