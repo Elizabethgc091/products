@@ -49,7 +49,7 @@ function CreateProduct() {
     return (
         <div>
             <div className="p-2 flex-grow-1">
-                <p className="fs-2">
+                <p id="text-cp" >
                     <i className="color-purple bi bi-chevron-left"></i>
                    Cargar producto</p>
             </div>
