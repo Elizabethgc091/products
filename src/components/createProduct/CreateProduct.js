@@ -45,10 +45,9 @@ function CreateProduct() {
             })
         e.target.reset();
     }
-
     return (
         <div>
-            <div className="p-2 flex-grow-1">
+            <div className="p-2 flex-grow-1"  onClick={()=>{navigate("/")}}>
                 <p id="text-cp" >
                     <i className="color-purple bi bi-chevron-left"></i>
                    Cargar producto</p>

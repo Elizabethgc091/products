@@ -28,9 +28,10 @@ function SpecializedProducts() {
             text: "Eliminar un producto es una acción permanente y no podrás recuperar el producto eliminado.",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#5B00A2',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Si, Eliminar!',
+
         }).then((result) => {
             let URL = `http://localhost:3001/products/${productId}`;
             if (result.isConfirmed) {
@@ -45,7 +46,7 @@ function SpecializedProducts() {
                         Swal.fire(
                             'Éxito!',
                             'El producto ha sido eliminado correctamente.',
-                            'success'
+                            'success',
                         )
                     })
                     .catch(err => {
@@ -107,7 +108,7 @@ function SpecializedProducts() {
                     <img src={funnel} alt="filtrar"/>
                 </div>
             </div>
-            <table className='table'>
+            <table className='table fs-5'>
                 <thead className='table-bkg'>
                 <tr className='color-purple'>
                     <th scope='col'>NOMBRE DEL PRODUCTO
@@ -126,7 +127,7 @@ function SpecializedProducts() {
                 {products.map((product, key) => {
                     let date = product.created_at;
                     date =  new Date().toLocaleDateString('es-MX')
-                    return (<tr key={key}>
+                    return (<tr className='fs-5' key={key}>
                         <td>{product.product_name}</td>
                         <td>{product.simple_sku.toUpperCase()}</td>
                         <td>{product.sku.toUpperCase()}</td>
