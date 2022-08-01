@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import chevron from "../../images/chevron.svg";
 import funnel from "../../images/funnel.svg";
 import styleProducts from "./styleProducts.css";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  fetchProducts,
+  deleteProduct,
+} from "../../feature/products/productsSlice";
 
 function SpecializedProducts() {
-  const [products, setProducts] = useState([]);
+  const products = useSelector((state) => state.products.items);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("http://localhost:3001/products")
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data.products);
-      });
+    dispatch(fetchProducts());
   }, []);
 
   function createProduct() {
@@ -22,41 +23,7 @@ function SpecializedProducts() {
   }
 
   function deleteItem(productId) {
-    Swal.fire({
-      title: "¿Deseas eliminar el producto?",
-      text: "Eliminar un producto es una acción permanente y no podrás recuperar el producto eliminado.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#5B00A2",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si, Eliminar!",
-    }).then((result) => {
-      let URL = `http://localhost:3001/products/${productId}`;
-      if (result.isConfirmed) {
-        fetch(URL, { method: "DELETE" })
-          .then((response) => {
-            if (response.status !== 200) {
-              throw new Error(`Error! status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then((data) => {
-            Swal.fire(
-              "Éxito!",
-              "El producto ha sido eliminado correctamente.",
-              "success"
-            );
-          })
-          .catch((err) => {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Error al eliminar producto!",
-            });
-          });
-        setProducts(products.filter((item) => item.upc !== productId));
-      }
-    });
+    dispatch(deleteProduct(productId));
   }
 
   return (
