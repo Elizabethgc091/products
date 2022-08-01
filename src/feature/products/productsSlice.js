@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 
 const initialState = {
   items: [],
+  isLoading: false,
 };
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", () => {
@@ -10,6 +11,21 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", () => {
     .then((response) => response.json())
     .then((data) => data.products);
 });
+
+export const createProduct = createAsyncThunk(
+  "products/createProduct",
+  (newProduct) => {
+    const requestOptions = {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newProduct),
+    };
+    return fetch("http://localhost:3001/products", requestOptions)
+      .then((response) => response.json())
+      .then((data) => data);
+  }
+);
 
 export const productsSlice = createSlice({
   name: "products",
@@ -55,8 +71,15 @@ export const productsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchProducts.pending, (state) => {
+      state.isLoading = true;
+    });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.items = action.payload;
+    });
+    builder.addCase(createProduct.fulfilled, (state, action) => {
+      state.items.push(action.payload);
     });
   },
 });

@@ -113,8 +113,8 @@ function SpecializedProducts() {
             return (
               <tr className="fs-5" key={key}>
                 <td>{product.product_name}</td>
-                <td>{product.simple_sku.toUpperCase()}</td>
-                <td>{product.sku.toUpperCase()}</td>
+                <td>{product.simple_sku}</td>
+                <td>{product.sku}</td>
                 <td>{product.upc}</td>
                 <td>{product.price}</td>
                 <td>{date}</td>

@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import styleCreateProduct from "../createProduct/styleCreateProduct.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createProduct } from "../../feature/products/productsSlice";
 
 function CreateProduct() {
   const [newProduct, setNewProduct] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -14,35 +17,7 @@ function CreateProduct() {
 
   function handlerSubmit(e) {
     e.preventDefault();
-    const requestOptions = {
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newProduct),
-    };
-    fetch("http://localhost:3001/products", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.message === "Body params error") {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Campos Vacíos!",
-          });
-        } else {
-          Swal.fire({
-            title: "Se agrego el producto",
-            icon: "success",
-            showCancelButton: false,
-            confirmButtonColor: "#0096CE",
-            confirmButtonText: "OK!",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate("/");
-            }
-          });
-        }
-      });
+    dispatch(createProduct(newProduct));
     e.target.reset();
   }
   return (
